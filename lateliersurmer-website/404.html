@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Page introuvable — L'Atelier sur Mer</title>
+  <meta name="description" content="Cette page n'existe pas. Retournez à l'accueil de L'Atelier sur Mer." />
+  <link rel="icon" href="./images/favicon-new.png" />
+  <link rel="apple-touch-icon" href="./images/logo-asm-apple-touch.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Bebas+Neue&display=swap" rel="stylesheet" />
+  <style>
+    :root{--red:#c8102e;--black:#0d0d0d;--dark:#1a1a1a;--white:#ffffff;--ease:cubic-bezier(0.4,0,0.2,1);}
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+    html{scroll-behavior:smooth;}
+    body{font-family:'Inter',system-ui,sans-serif;background:var(--black);color:var(--white);min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:40px 20px;-webkit-font-smoothing:antialiased;}
+    a{text-decoration:none;color:inherit;}
+    ::selection{background:var(--red);color:var(--white);}
+
+    .logo{margin-bottom:48px;}
+    .logo img{height:52px;width:auto;filter:brightness(0) invert(1);}
+
+    .code{font-family:'Bebas Neue',sans-serif;font-size:clamp(120px,20vw,220px);line-height:1;color:var(--red);letter-spacing:.02em;opacity:.15;position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);pointer-events:none;user-select:none;z-index:0;}
+
+    .content{position:relative;z-index:1;}
+    .label{font-size:11px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--red);margin-bottom:16px;}
+    .title{font-family:'Bebas Neue',sans-serif;font-size:clamp(36px,6vw,64px);letter-spacing:.03em;margin-bottom:20px;line-height:1.05;}
+    .sub{font-size:16px;color:rgba(255,255,255,.55);max-width:440px;margin:0 auto 40px;line-height:1.7;}
+
+    .btn-red{display:inline-flex;align-items:center;gap:10px;background:var(--red);color:var(--white);font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:14px 28px;border-radius:2px;transition:background .25s var(--ease),transform .25s;}
+    .btn-red:hover{background:#e01230;transform:translateY(-2px);}
+    .btn-outline{display:inline-flex;align-items:center;gap:10px;border:1px solid rgba(255,255,255,.25);color:rgba(255,255,255,.75);font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:14px 28px;border-radius:2px;transition:all .25s var(--ease);}
+    .btn-outline:hover{border-color:var(--white);color:var(--white);}
+    .actions{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;}
+
+    .wave{position:absolute;bottom:0;left:0;right:0;height:120px;overflow:hidden;}
+    .wave svg{width:100%;height:100%;display:block;}
+  </style>
+</head>
+<body>
+
+<div class="code" aria-hidden="true">404</div>
+
+<div class="logo">
+  <a href="index.html">
+    <img src="./images/assets/logo_asm.png" alt="L'Atelier sur Mer" />
+  </a>
+</div>
+
+<div class="content">
+  <p class="label">Erreur 404</p>
+  <h1 class="title">Page introuvable</h1>
+  <p class="sub">Cette page n'existe pas ou a été déplacée. Revenez à l'accueil ou découvrez nos services.</p>
+  <div class="actions">
+    <a href="index.html" class="btn-red">
+      Retour à l'accueil
+      <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </a>
+    <a href="gallery.html" class="btn-outline">Voir nos réalisations</a>
+  </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /blog.html
+
+Sitemap: https://www.lateliersurmer.com/sitemap.xml

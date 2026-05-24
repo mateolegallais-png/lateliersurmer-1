@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Blog & Actualités — L'Atelier sur Mer</title>
+  <meta name="description" content="Suivez l'actualité de L'Atelier sur Mer : projets de décoration de voile, covering nautique, course au large et yachting. Notre expertise en images." />
+  <link rel="icon" href="./images/favicon-new.png" />
+  <link rel="apple-touch-icon" href="./images/logo-asm-apple-touch.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Bebas+Neue&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --red:   #c8102e; --black: #0d0d0d; --dark:  #1a1a1a;
+      --white: #ffffff; --grey:  #f5f5f5; --text:  #2c2c2c;
+      --muted: #6b6b6b; --nav-h: 95px;
+      --ease:  cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Inter', system-ui, sans-serif; color: var(--text); background: var(--white); overflow-x: hidden; }
+    img { display: block; max-width: 100%; }
+    a { text-decoration: none; color: inherit; }
+    ul { list-style: none; }
+    button { cursor: pointer; font-family: inherit; border: none; background: none; }
+
+    .reveal { opacity: 0; transform: translateY(32px); transition: opacity 0.7s var(--ease), transform 0.7s var(--ease); }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .delay-1 { transition-delay: 0.1s; }
+    .delay-2 { transition-delay: 0.2s; }
+    .delay-3 { transition-delay: 0.3s; }
+
+    /* Pre-header */
+    .pre-header { background: var(--black); display: flex; justify-content: flex-end; align-items: center; gap: 24px; padding: 8px 40px; font-size: 12px; font-weight: 500; letter-spacing: 0.08em; }
+    .pre-header a { color: rgba(255,255,255,0.7); text-transform: uppercase; transition: color 0.2s; }
+    .pre-header a:hover { color: var(--white); }
+    .pre-header-sep { color: rgba(255,255,255,0.3); }
+
+    /* Nav */
+    .nav { position: sticky; top: 0; z-index: 100; background: var(--black); height: var(--nav-h); display: flex; align-items: center; justify-content: space-between; padding: 0 40px; transition: height 0.3s ease, box-shadow 0.3s; }
+    .nav.scrolled { height: 72px; box-shadow: 0 2px 20px rgba(0,0,0,0.5); }
+    .nav-left, .nav-right { display: flex; align-items: center; gap: 36px; flex: 1; }
+    .nav-right { justify-content: flex-end; }
+    .nav-logo { flex-shrink: 0; transition: transform 0.3s var(--ease); }
+    .nav-logo:hover { transform: scale(1.05); }
+    .nav.scrolled .nav-logo img { height: 58px; }
+    .nav-logo img { height: 85px; width: auto; object-fit: contain; object-position: center; transition: height 0.3s ease; filter: drop-shadow(0 0 6px rgba(255,255,255,0.15)); }
+    .nav-link { color: rgba(255,255,255,0.85); font-size: 12px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; position: relative; padding-bottom: 2px; white-space: nowrap; transition: color 0.2s; }
+    .nav-link::after { content: ''; position: absolute; bottom: -2px; left: 0; width: 0; height: 2px; background: var(--red); transition: width 0.3s var(--ease); }
+    .nav-link:hover { color: var(--white); }
+    .nav-link:hover::after, .nav-link.active::after { width: 100%; }
+    .nav-link.active { color: var(--white); }
+    .lang-toggle { display: flex; align-items: center; background: rgba(255,255,255,0.1); border-radius: 20px; padding: 3px; gap: 2px; margin-left: 8px; }
+    .lang-btn { padding: 4px 10px; border-radius: 16px; font-size: 11px; font-weight: 700; letter-spacing: 0.08em; color: rgba(255,255,255,0.55); transition: all 0.25s var(--ease); }
+    .lang-btn.active { background: var(--red); color: var(--white); }
+    .lang-btn:hover:not(.active) { color: var(--white); }
+    .nav-dd { position: relative; }
+    .nav-dd-menu { position: absolute; top: calc(100% + 14px); left: 50%; transform: translateX(-50%) translateY(-6px); background: var(--black); border-top: 2px solid var(--red); min-width: 220px; opacity: 0; visibility: hidden; transition: opacity 0.2s var(--ease), transform 0.2s var(--ease), visibility 0.2s; z-index: 200; box-shadow: 0 12px 32px rgba(0,0,0,0.5); }
+    .nav-dd:hover .nav-dd-menu, .nav-dd:focus-within .nav-dd-menu { opacity: 1; visibility: visible; transform: translateX(-50%) translateY(0); }
+    .nav-dd-item { display: block; padding: 13px 20px; font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.65); transition: all 0.2s; border-bottom: 1px solid rgba(255,255,255,0.07); white-space: nowrap; }
+    .nav-dd-item:last-child { border-bottom: none; }
+    .nav-dd-item:hover { color: var(--white); background: rgba(255,255,255,0.05); padding-left: 26px; }
+    .nav-link-chevron { width: 10px; height: 10px; margin-left: 3px; opacity: 0.5; transition: transform 0.25s var(--ease); display: inline-block; vertical-align: middle; }
+    .nav-dd:hover .nav-link-chevron { transform: rotate(180deg); }
+    .nav-sub { font-size: 15px !important; letter-spacing: 0.1em !important; opacity: 0.65; }
+    .hamburger { display: none; flex-direction: column; gap: 5px; padding: 8px; }
+    .hamburger span { display: block; width: 24px; height: 2px; background: var(--white); border-radius: 2px; transition: all 0.3s var(--ease); }
+    .hamburger.open span:nth-child(1) { transform: rotate(45deg) translate(5px,5px); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: rotate(-45deg) translate(5px,-5px); }
+    .mobile-nav { display: none; position: fixed; inset: 0; background: var(--black); z-index: 99; flex-direction: column; align-items: center; justify-content: center; gap: 32px; transform: translateY(-100%); transition: transform 0.4s var(--ease); }
+    .mobile-nav.open { transform: translateY(0); }
+    .mobile-nav .nav-link { font-size: 20px; letter-spacing: 0.15em; }
+
+    /* Page hero */
+    .page-hero { position: relative; height: 420px; background: var(--black); overflow: hidden; display: flex; align-items: flex-end; }
+    .page-hero-img { position: absolute; inset: 0; background-image: url('./images/prysmian.jpg'); background-size: cover; background-position: center 40%; }
+    .page-hero-img::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.75) 100%); }
+    .page-hero-content { position: relative; z-index: 2; padding: 0 60px 60px; color: var(--white); }
+    .breadcrumb { font-size: 12px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(255,255,255,0.6); margin-bottom: 16px; }
+    .breadcrumb a { color: rgba(255,255,255,0.6); transition: color 0.2s; }
+    .breadcrumb a:hover { color: var(--white); }
+    .breadcrumb span { margin: 0 8px; opacity: 0.4; }
+    .page-hero-tag { display: inline-block; background: var(--red); font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; padding: 4px 12px; border-radius: 3px; margin-bottom: 12px; }
+    .page-hero-title { font-family: 'Bebas Neue', sans-serif; font-size: clamp(42px, 6vw, 72px); line-height: 1.0; letter-spacing: 0.03em; }
+
+    /* Layout */
+    .container { max-width: 1240px; margin: 0 auto; padding: 0 40px; }
+    .section { padding: 96px 0; }
+    .section-label { font-size: 11px; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: var(--red); margin-bottom: 12px; }
+    .section-title { font-family: 'Bebas Neue', sans-serif; font-size: clamp(32px, 4vw, 52px); line-height: 1.05; letter-spacing: 0.02em; color: var(--black); }
+
+    /* Blog grid */
+    .blog-section { background: var(--white); }
+    .blog-intro { text-align: center; max-width: 640px; margin: 0 auto 64px; }
+    .blog-intro .section-title { margin-bottom: 16px; }
+    .blog-intro p { font-size: 16px; line-height: 1.8; color: var(--muted); }
+    .blog-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; }
+    .blog-card { background: var(--grey); border-radius: 2px; overflow: hidden; transition: transform 0.3s var(--ease), box-shadow 0.3s; }
+    .blog-card:hover { transform: translateY(-4px); box-shadow: 0 12px 32px rgba(0,0,0,0.1); }
+    .blog-card-img { width: 100%; height: 220px; object-fit: cover; display: block; transition: transform 0.5s var(--ease); }
+    .blog-card:hover .blog-card-img { transform: scale(1.04); }
+    .blog-card-img-wrap { overflow: hidden; }
+    .blog-card-body { padding: 28px 24px; }
+    .blog-card-cat { font-size: 10px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--red); margin-bottom: 10px; }
+    .blog-card-title { font-family: 'Bebas Neue', sans-serif; font-size: 22px; letter-spacing: 0.03em; color: var(--black); margin-bottom: 10px; line-height: 1.15; }
+    .blog-card-excerpt { font-size: 13px; line-height: 1.75; color: var(--muted); margin-bottom: 20px; }
+    .blog-card-link { font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--red); display: inline-flex; align-items: center; gap: 6px; transition: gap 0.2s; }
+    .blog-card-link:hover { gap: 10px; }
+
+    /* External CTA */
+    .blog-cta { background: var(--black); padding: 72px 0; text-align: center; }
+    .blog-cta-title { font-family: 'Bebas Neue', sans-serif; font-size: clamp(28px, 4vw, 48px); color: var(--white); margin-bottom: 16px; line-height: 1.05; }
+    .blog-cta-sub { font-size: 15px; color: rgba(255,255,255,0.6); max-width: 480px; margin: 0 auto 36px; line-height: 1.7; }
+    .btn-primary { display: inline-flex; align-items: center; gap: 10px; background: var(--red); color: var(--white); font-size: 12px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; padding: 16px 36px; border-radius: 2px; transition: background 0.25s, transform 0.25s; }
+    .btn-primary:hover { background: #e01230; transform: translateY(-2px); }
+
+    /* Footer */
+    footer { background: var(--dark); color: rgba(255,255,255,0.75); }
+    .footer-main { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 48px; padding: 64px 0 48px; }
+    .footer-brand img { height: 48px; width: auto; margin-bottom: 20px; filter: brightness(0) invert(1); }
+    .footer-brand p { font-size: 13px; line-height: 1.8; color: rgba(255,255,255,0.5); max-width: 280px; }
+    .footer-col-title { font-size: 11px; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: var(--white); margin-bottom: 20px; }
+    .footer-col a { display: block; font-size: 13px; color: rgba(255,255,255,0.55); margin-bottom: 10px; transition: color 0.2s; }
+    .footer-col a:hover { color: var(--white); }
+    .footer-bottom { border-top: 1px solid rgba(255,255,255,0.1); padding: 20px 0; display: flex; align-items: center; justify-content: space-between; }
+    .footer-legal { display: flex; gap: 24px; flex-wrap: wrap; }
+    .footer-legal a { font-size: 12px; color: rgba(255,255,255,0.4); transition: color 0.2s; }
+    .footer-legal a:hover { color: rgba(255,255,255,0.75); }
+    .footer-copy { font-size: 12px; color: rgba(255,255,255,0.3); }
+
+    /* Responsive */
+    @media (max-width: 1024px) {
+      .nav-left .nav-link:nth-child(n+3), .nav-right .nav-link, .nav-right .nav-dd { display: none; }
+      .hamburger { display: flex; }
+      .mobile-nav { display: flex; }
+      .blog-grid { grid-template-columns: 1fr 1fr; }
+      .footer-main { grid-template-columns: 1fr 1fr; gap: 32px; }
+    }
+    @media (max-width: 768px) {
+      .pre-header { padding: 8px 20px; }
+      .nav { padding: 0 20px; }
+      .nav-logo img { height: 60px; }
+      .container { padding: 0 20px; }
+      .section { padding: 64px 0; }
+      .page-hero { height: 320px; }
+      .page-hero-content { padding: 0 20px 36px; }
+      .blog-grid { grid-template-columns: 1fr; }
+      .footer-main { grid-template-columns: 1fr; }
+      .footer-bottom { flex-direction: column; gap: 12px; text-align: center; }
+      .footer-legal { justify-content: center; }
+    }
+    .footer-social{display:flex;gap:12px;margin-top:16px;}
+    .footer-social a{display:flex;align-items:center;justify-content:center;width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,.08);color:rgba(255,255,255,.6);transition:all .2s;}
+    .footer-social a:hover{background:var(--red);color:var(--white);}
+  </style>
+</head>
+<body>
+
+<!-- Pre-header -->
+<div class="pre-header">
+  <a href="index.html#contact" data-i18n="nav_contact">Contact</a>
+  <span class="pre-header-sep" style="color:rgba(255,255,255,0.15)">⌂</span>
+</div>
+
+<!-- Nav -->
+<nav class="nav" id="mainNav">
+  <div class="nav-left">
+    <a href="about.html" class="nav-link" data-i18n="nav_about">Qui sommes-nous</a>
+    <a href="expertise.html" class="nav-link" data-i18n="nav_expertise">Notre savoir-faire</a>
+  </div>
+  <a href="index.html" class="nav-logo">
+    <img src="./images/assets/logo_asm.png" alt="L'Atelier sur Mer" />
+  </a>
+  <div class="nav-right">
+    <div class="nav-dd">
+      <a href="index.html#services" class="nav-link" data-i18n="nav_services" style="display:flex;align-items:center;gap:4px;">Nos services
+        <svg class="nav-link-chevron" viewBox="0 0 10 10" fill="none"><path d="M2 3.5L5 6.5L8 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+      <div class="nav-dd-menu">
+        <a href="course-au-large.html" class="nav-dd-item" data-i18n="nav_dd_cal">Course au Large</a>
+        <a href="yachting.html" class="nav-dd-item" data-i18n="nav_dd_yachting">Yachting</a>
+      </div>
+    </div>
+    <a href="gallery.html" class="nav-link" data-i18n="nav_realisations">Nos réalisations</a>
+    <div class="lang-toggle" role="group">
+      <button class="lang-btn active" id="btnFR" onclick="setLang('fr')">FR</button>
+      <button class="lang-btn" id="btnEN" onclick="setLang('en')">EN</button>
+    </div>
+    <button class="hamburger" id="hamburger" aria-label="Menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- Mobile nav -->
+<div class="mobile-nav" id="mobileNav">
+  <a href="about.html" class="nav-link" data-i18n="nav_about" onclick="closeMobileNav()">Qui sommes-nous</a>
+  <a href="expertise.html" class="nav-link" data-i18n="nav_expertise" onclick="closeMobileNav()">Notre savoir-faire</a>
+  <a href="index.html#services" class="nav-link" data-i18n="nav_services" onclick="closeMobileNav()">Nos services</a>
+  <a href="course-au-large.html" class="nav-link nav-sub" data-i18n="nav_dd_cal" onclick="closeMobileNav()">Course au Large</a>
+  <a href="yachting.html" class="nav-link nav-sub" data-i18n="nav_dd_yachting" onclick="closeMobileNav()">Yachting</a>
+  <a href="gallery.html" class="nav-link" data-i18n="nav_realisations" onclick="closeMobileNav()">Nos réalisations</a>
+  <a href="index.html#contact" class="nav-link" data-i18n="nav_contact" onclick="closeMobileNav()">Contact</a>
+</div>
+
+<!-- Page Hero -->
+<div class="page-hero">
+  <div class="page-hero-img"></div>
+  <div class="page-hero-content">
+    <div class="breadcrumb">
+      <a href="index.html" data-i18n="bc_home">Accueil</a>
+      <span>»</span>
+      <span data-i18n="nav_blog">Blog</span>
+    </div>
+    <span class="page-hero-tag" data-i18n="blog_tag">Actualités</span>
+    <h1 class="page-hero-title" data-i18n="blog_hero_title">Blog &amp; actualités</h1>
+  </div>
+</div>
+
+<!-- Blog Posts -->
+
+
+<!-- External Blog CTA -->
+<div class="blog-cta">
+  <div class="container">
+    <h2 class="blog-cta-title reveal" data-i18n="blog_cta_title">Retrouvez tous nos articles<br>sur notre blog</h2>
+    <p class="blog-cta-sub reveal" data-i18n="blog_cta_sub">Accédez à l'intégralité de nos articles, guides techniques et actualités sur notre site WordPress.</p>
+    <a href="https://www.lateliersurmer.com/blog/" class="btn-primary reveal" target="_blank" rel="noopener">
+      <span data-i18n="blog_cta_btn">Voir tous les articles</span>
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </a>
+  </div>
+</div>
+
+<!-- Footer -->
+<footer>
+  <div class="container">
+    <div class="footer-main">
+      <div class="footer-brand">
+        <img src="./images/assets/logo_asm.png" alt="L'Atelier sur Mer" />
+        <p data-i18n="foot_desc">Expert de la décoration sur voile et du covering depuis 2003, basé à La Trinité-sur-Mer et Lorient.</p>
+        <div class="footer-social">
+        <!-- TODO: update Instagram URL if different -->
+        <a href="https://www.instagram.com/lateliersurmer" target="_blank" rel="noopener" aria-label="Instagram">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+        </a>
+        <!-- TODO: update Facebook URL if different -->
+        <a href="https://www.facebook.com/lateliersurmer" target="_blank" rel="noopener" aria-label="Facebook">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+        </a>
+        <a href="https://fr.linkedin.com/company/l%27atelier-sur-mer" target="_blank" rel="noopener" aria-label="LinkedIn">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+        </a>
+      </div>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col-title" data-i18n="foot_nav">Navigation</div>
+        <a href="about.html" data-i18n="nav_about">Qui sommes-nous</a>
+        <a href="expertise.html" data-i18n="nav_expertise">Notre savoir-faire</a>
+        <a href="gallery.html" data-i18n="nav_realisations">Nos réalisations</a>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col-title" data-i18n="foot_services">Services</div>
+        <a href="course-au-large.html" data-i18n="nav_dd_cal">Course au Large</a>
+        <a href="yachting.html" data-i18n="nav_dd_yachting">Yachting</a>
+        <a href="sail-decoration.html" data-i18n="nav_dd1">Décoration sur voile</a>
+        <a href="covering.html" data-i18n="nav_dd2">Covering</a>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col-title" data-i18n="foot_contact_title">Contact</div>
+        <a href="tel:+33297558984" style="font-weight:700;color:var(--white);font-size:14px;margin-bottom:12px;display:block;">+33 (0)2 97 55 89 84</a>
+        <a href="index.html#contact" data-i18n="foot_site1">Site de la Trinité sur Mer</a>
+        <a href="index.html#contact" data-i18n="foot_site2">Site de Lorient la Base</a>
+        <a href="index.html#contact" data-i18n="nav_contact">Formulaire de contact</a>
+      </div>
+    </div>
+  </div>
+  <div style="border-top:1px solid rgba(255,255,255,0.1)">
+    <div class="container">
+      <div class="footer-bottom">
+        <div class="footer-legal">
+          <a href="mentions-legales.html" data-i18n="foot_legal">Mentions légales</a>
+          <a href="gestion-des-cookies.html" data-i18n="foot_cookies">Gestion des cookies</a>
+          <a href="politique-de-confidentialite.html" data-i18n="foot_privacy">Politique de confidentialité</a>
+        </div>
+        <p class="footer-copy">© 2025 L'Atelier sur Mer</p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const i18n = {
+    fr: {
+      nav_about:"Qui sommes-nous", nav_expertise:"Notre savoir-faire", nav_services:"Nos services",
+      nav_dd_cal:"Course au Large", nav_dd_yachting:"Yachting", nav_dd1:"Décoration sur voile", nav_dd2:"Covering", nav_dd3:"Supports publicitaires",
+      nav_realisations:"Nos réalisations", nav_contact:"Contact", nav_blog:"Blog",
+      bc_home:"Accueil", blog_tag:"Actualités", blog_hero_title:"Blog &amp; actualités",
+      blog_label:"Nos derniers articles", blog_title:"L'univers de l'Atelier sur Mer",
+      blog_sub:"Suivez notre actualité : réalisations, techniques, événements nautiques et conseils de nos experts.",
+      cat_race:"Course au large", cat_cover:"Covering", cat_event:"Événement",
+      post1_title:"Route du Rhum 2022 — nos bateaux à l'arrivée",
+      post1_excerpt:"Retour sur notre participation à la Route du Rhum 2022. Découvrez les réalisations que nous avons accompagnées pour cette édition exceptionnelle.",
+      post2_title:"Covering de coque : les films haute performance",
+      post2_excerpt:"Tout ce que vous devez savoir sur les films vinyle haute performance pour le covering de coques de bateaux en milieu marin.",
+      post3_title:"Transat Jacques Vabre — coulisses de la préparation",
+      post3_excerpt:"Dans les coulisses de la préparation des bateaux pour la Transat Jacques Vabre : décorations de voiles, covering et supports publicitaires.",
+      read_more:"Lire l'article",
+      blog_cta_title:"Retrouvez tous nos articles<br>sur notre blog",
+      blog_cta_sub:"Accédez à l'intégralité de nos articles, guides techniques et actualités sur notre site WordPress.",
+      blog_cta_btn:"Voir tous les articles",
+      foot_desc:"Expert de la décoration sur voile et du covering depuis 2003, basé à La Trinité-sur-Mer et Lorient.",
+      foot_nav:"Navigation", foot_services:"Services", foot_contact_title:"Contact",
+      foot_site1:"Site de la Trinité sur Mer", foot_site2:"Site de Lorient la Base",
+      foot_legal:"Mentions légales", foot_cookies:"Gestion des cookies", foot_privacy:"Politique de confidentialité",
+    },
+    en: {
+      nav_about:"About us", nav_expertise:"Our expertise", nav_services:"Our services",
+      nav_dd_cal:"Ocean Racing", nav_dd_yachting:"Yachting", nav_dd1:"Sail decoration", nav_dd2:"Boat covering", nav_dd3:"Advertising media",
+      nav_realisations:"Our work", nav_contact:"Contact", nav_blog:"Blog",
+      bc_home:"Home", blog_tag:"News", blog_hero_title:"Blog &amp; news",
+      blog_label:"Latest articles", blog_title:"The world of L'Atelier sur Mer",
+      blog_sub:"Follow our news: projects, techniques, nautical events and expert tips.",
+      cat_race:"Offshore racing", cat_cover:"Boat covering", cat_event:"Event",
+      post1_title:"Route du Rhum 2022 — our boats at the finish",
+      post1_excerpt:"A look back at our participation in the Route du Rhum 2022. Discover the projects we supported for this exceptional edition.",
+      post2_title:"Hull covering: high-performance films",
+      post2_excerpt:"Everything you need to know about high-performance vinyl films for boat hull wrapping in marine environments.",
+      post3_title:"Transat Jacques Vabre — behind the scenes of preparation",
+      post3_excerpt:"Behind the scenes of preparing the boats for the Transat Jacques Vabre: sail decorations, wrapping and advertising media.",
+      read_more:"Read article",
+      blog_cta_title:"Find all our articles<br>on our blog",
+      blog_cta_sub:"Access all our articles, technical guides and news on our WordPress site.",
+      blog_cta_btn:"View all articles",
+      foot_desc:"Sail decoration and covering expert since 2003, based in La Trinité-sur-Mer and Lorient.",
+      foot_nav:"Navigation", foot_services:"Services", foot_contact_title:"Contact",
+      foot_site1:"La Trinité sur Mer site", foot_site2:"Lorient la Base site",
+      foot_legal:"Legal notices", foot_cookies:"Cookie management", foot_privacy:"Privacy policy",
+    }
+  };
+
+  let currentLang = localStorage.getItem('asm_lang') || 'fr';
+
+  function setLang(lang) {
+    currentLang = lang;
+    localStorage.setItem('asm_lang', lang);
+    document.documentElement.lang = lang;
+    document.getElementById('btnFR').classList.toggle('active', lang === 'fr');
+    document.getElementById('btnEN').classList.toggle('active', lang === 'en');
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+      const key = el.getAttribute('data-i18n');
+      if (i18n[lang][key] !== undefined) el.innerHTML = i18n[lang][key];
+    });
+  }
+
+  const nav = document.getElementById('mainNav');
+  window.addEventListener('scroll', () => { nav.classList.toggle('scrolled', window.scrollY > 80); });
+
+  const hamburger = document.getElementById('hamburger');
+  const mobileNav = document.getElementById('mobileNav');
+  hamburger.addEventListener('click', () => {
+    const open = hamburger.classList.toggle('open');
+    mobileNav.classList.toggle('open', open);
+    hamburger.setAttribute('aria-expanded', String(open));
+    document.body.style.overflow = open ? 'hidden' : '';
+  });
+  function closeMobileNav() {
+    hamburger.classList.remove('open');
+    mobileNav.classList.remove('open');
+    hamburger.setAttribute('aria-expanded', 'false');
+    document.body.style.overflow = '';
+  }
+
+  const revealEls = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
+  }, { threshold: 0 });
+  revealEls.forEach(el => {
+    if (el.getBoundingClientRect().top < window.innerHeight) el.classList.add('visible');
+    else observer.observe(el);
+  });
+
+  setLang(currentLang);
+</script>
+</body>
+</html>

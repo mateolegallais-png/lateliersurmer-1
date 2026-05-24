@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+
+  <url>
+    <loc>https://www.lateliersurmer.com/</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.lateliersurmer.com/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.lateliersurmer.com/"/>
+    <changefreq>monthly</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <url>
+    <loc>https://www.lateliersurmer.com/about</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.lateliersurmer.com/about"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.lateliersurmer.com/about"/>
+    <changefreq>yearly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://www.lateliersurmer.com/expertise</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.lateliersurmer.com/expertise"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.lateliersurmer.com/expertise"/>
+    <changefreq>yearly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://www.lateliersurmer.com/course-au-large</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.lateliersurmer.com/course-au-large"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.lateliersurmer.com/course-au-large"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <url>
+    <loc>https://www.lateliersurmer.com/yachting</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.lateliersurmer.com/yachting"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.lateliersurmer.com/yachting"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <url>
+    <loc>https://www.lateliersurmer.com/sail-decoration</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.lateliersurmer.com/sail-decoration"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.lateliersurmer.com/sail-decoration"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://www.lateliersurmer.com/covering</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.lateliersurmer.com/covering"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.lateliersurmer.com/covering"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://www.lateliersurmer.com/advertising</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.lateliersurmer.com/advertising"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.lateliersurmer.com/advertising"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://www.lateliersurmer.com/gallery</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.lateliersurmer.com/gallery"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.lateliersurmer.com/gallery"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://www.lateliersurmer.com/mentions-legales</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.lateliersurmer.com/mentions-legales"/>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+
+  <url>
+    <loc>https://www.lateliersurmer.com/politique-de-confidentialite</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.lateliersurmer.com/politique-de-confidentialite"/>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+
+  <url>
+    <loc>https://www.lateliersurmer.com/gestion-des-cookies</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.lateliersurmer.com/gestion-des-cookies"/>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+
+</urlset>
